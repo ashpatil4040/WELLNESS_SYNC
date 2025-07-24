@@ -2,6 +2,20 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const WeeklyAnalytics = ({ moodData }) => {
+  // Handle empty data case
+  if (!moodData || moodData.length === 0) {
+    return (
+      <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+        <h2 className="text-2xl font-bold mb-8 text-gray-800">Weekly Analytics</h2>
+        <div className="flex flex-col items-center justify-center h-64 text-gray-500">
+          <div className="text-6xl mb-4">📈</div>
+          <p className="text-lg font-medium mb-2">No analytics data yet</p>
+          <p className="text-sm text-center">Track your mood and habits for a few days to see detailed analytics here!</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
       <h2 className="text-2xl font-bold mb-8 text-gray-800">Weekly Analytics</h2>

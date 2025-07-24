@@ -1,0 +1,7 @@
+CREATE TABLE journal_entries (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  content TEXT NOT NULL,
+  date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);

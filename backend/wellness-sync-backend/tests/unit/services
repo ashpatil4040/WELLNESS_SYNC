@@ -1,0 +1,30 @@
+import { getHabits } from '../../../src/services/habitsService';
+import { Habit } from '../../../src/models/Habit';
+
+jest.mock('../../../src/models/Habit');
+
+describe('Habits Service', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('should fetch all habits', async () => {
+    const mockHabits = [
+      { id: 1, name: 'Drink Water', target: 8, completed: 5 },
+      { id: 2, name: 'Exercise', target: 30, completed: 20 },
+    ];
+
+    Habit.findAll.mockResolvedValue(mockHabits);
+
+    const habits = await getHabits();
+
+    expect(Habit.findAll).toHaveBeenCalledTimes(1);
+    expect(habits).toEqual(mockHabits);
+  });
+
+  test('should handle errors when fetching habits', async () => {
+    Habit.findAll.mockRejectedValue(new Error('Database error'));
+
+    await expect(getHabits()).rejects.toThrow('Database error');
+  });
+});

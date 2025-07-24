@@ -14,7 +14,7 @@ import {
   X
 } from 'lucide-react';
 
-const Navigation = ({ user, notifications, activeTab, setActiveTab }) => {
+const Navigation = ({ user, notifications, activeTab, setActiveTab, onLogout }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
 
@@ -222,7 +222,10 @@ const Navigation = ({ user, notifications, activeTab, setActiveTab }) => {
                   </div>
 
                   <div className="border-t border-gray-100 pt-2">
-                    <button className="w-full flex items-center space-x-3 px-4 py-2 text-red-600 hover:bg-red-50 transition-colors">
+                    <button 
+                      onClick={onLogout}
+                      className="w-full flex items-center space-x-3 px-4 py-2 text-red-600 hover:bg-red-50 transition-colors"
+                    >
                       <LogOut className="w-4 h-4" />
                       <span>Sign Out</span>
                     </button>
